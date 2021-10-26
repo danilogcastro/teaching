@@ -1,0 +1,4 @@
+id, name, cured, room_id
+1, Gabriel, false, 1
+2, Pilar, false, 1
+3, Jeff, false, 2
