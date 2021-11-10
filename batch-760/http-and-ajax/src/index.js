@@ -47,7 +47,7 @@ searchMovie("harry potter");
 // POST REQUEST WITH FETCH
 
 // SELECT INPUT ELEMENT
-const input = document.querySelector("#search");
+const input2 = document.querySelector("#search");
 
 // CALLBACK FUNCTION TO ACCESS ALGOLIA API
 const searchAlgoliaPlaces = (event) => {
@@ -64,4 +64,4 @@ const searchAlgoliaPlaces = (event) => {
     });
 };
 
-input.addEventListener("keyup", searchAlgoliaPlaces);
+input2.addEventListener("keyup", searchAlgoliaPlaces);
