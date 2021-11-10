@@ -4,6 +4,21 @@
 const results = document.querySelector("#results");
 const form = document.querySelector("#search-movies");
 
+// CALLBACK FUNCTION TO BE USED IN THE FETCH
+const insertItems = (data) => {
+  // GET THE ARRAY OF MOVIES
+  const movies = data.Search;
+  // ITERATE OVER MOVIES
+  movies.forEach((movie) => {
+    // CREATE A LIST TIME HTML ELEMENT WITH INFORMATION OF THE MOVIE
+    const item = `<li class="list-inline-item">
+                    <img src="${movie.Poster}">
+                    <p>${movie.Title}</p>
+                  </li>`;
+    // INSERT LIST ITEM INSIDE THE UNORDERED LIST
+    results.insertAdjacentHTML('beforeend', item);
+  });
+};
 
 const searchMovie = (query) => {
   // FETCH THE INFORMATION FROM THE API
@@ -11,21 +26,9 @@ const searchMovie = (query) => {
   // THEN PARSE THE PROMISE INTO JSON
   // THEN PERFORM ACTION ON THE RETURNED OBJECT
   promise.then(response => response.json())
-         .then((data) => {
-            // GET THE ARRAY OF MOVIES
-            const movies = data.Search;
-            // ITERATE OVER MOVIES
-            movies.forEach((movie) => {
-              //CREATE A LIST TIME HTML ELEMENT WITH INFORMATION OF THE MOVIE
-              const item = `<li class="list-inline-item">
-                              <img src="${movie.Poster}">
-                              <p>${movie.Title}</p>
-                            </li>`
-              // INSERT LIST ITEM INSIDE THE UNORDERED LIST
-              results.insertAdjacentHTML('beforeend', item);
-            })
-         })
-}
+         .then(insertItems);
+};
+
 
 // SELECT INPUT
 const input = document.querySelector("#keyword");
